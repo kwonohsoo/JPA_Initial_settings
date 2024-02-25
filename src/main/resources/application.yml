@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/demo?characterEncoding=UTF-8&serverTimeZone=UTC
+    username: root
+    password: 1111
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        connection:
+          charSet: UTF-8
+    database-platform: org.hibernate.dialect.MariaDBDialect
+
+  servlet:
+    multipart:
+      max-file-size: 10GB # 파일은 10MB를 초과할 수 없음
+      max-request-size: 10GB # 한번의 리소스 요청은 15MB를 초과할 수 없음
+
+  output:
+    ansi:
+      enabled: always
+#  jackson:
+#    property-naming-strategy: SNAKE_CASE #Java객체 <-> JSON 변환시 사용할 전략 설정
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+springdoc:
+  swagger-ui:
+    display-request-duration: true  # API 요청 시간 (m/s)
+    defaultModelsExpandDepth: -1  # Schema 숨김 (default: 1)
+
+#http:
+#  encoding:
+#    charset: utf-8
+#    enable: true
+#    force: true
